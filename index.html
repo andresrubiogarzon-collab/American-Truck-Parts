@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!-- Tienda generada con Harvys, asistente de e-commerce creado por el Profesor Harvey Sanabria -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>American Truck Parts — [POR COMPLETAR]</title>
+<meta name="description" content="Repuestos para los transportadores de Colombia.">
+<meta name="generator" content="Harvys — asistente de e-commerce del Profesor Harvey Sanabria">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="anim-media tarj-elevadas modo-oscuro">
+
+<!-- MODAL PAGO -->
+<div class="modal-overlay" id="modal-pago" onclick="modalClickFuera(event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-head"><h3>Confirmar pago</h3><button class="modal-cerrar" onclick="cerrarModal()" aria-label="Cerrar">✕</button></div>
+    <div class="modal-body">
+      <div class="modal-total"><span class="tl">Total a pagar</span><span class="tm" id="modal-total-monto">$0</span></div>
+      <div class="pago-metodos" id="pago-metodos"></div>
+      <div class="pago-datos" id="pago-datos">
+        <div class="pd-label">Transferir a este número</div>
+        <div class="pd-numero" id="pd-numero"></div>
+        <div class="pd-nombre" id="pd-nombre"></div>
+        <button class="btn-copiar" onclick="copiarNumero()">📋 Copiar número</button>
+      </div>
+      <div class="pasos">
+        <div class="paso"><div class="paso-num">1</div><div class="paso-txt" id="paso-1"></div></div>
+        <div class="paso"><div class="paso-num">2</div><div class="paso-txt">Toca <strong>"Confirmar y enviar"</strong> — se abre WhatsApp con tu pedido</div></div>
+        <div class="paso"><div class="paso-num">3</div><div class="paso-txt" id="paso-3"></div></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <a href="#" target="_blank" rel="noopener" class="btn-wsp" onclick="return prepararWsp(this)">✅ Confirmar y enviar por WhatsApp</a>
+      <button class="btn-seguir" onclick="cerrarModal()">← Seguir comprando</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="cerrarCarrito()"></div>
+
+<!-- VISOR DE FOTOS -->
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Foto del producto">
+  <figure class="visor-caja">
+    <button class="visor-cerrar" aria-label="Cerrar">✕</button>
+    <div class="visor-foto" id="visor-foto"><img id="visor-img" alt=""></div>
+    <figcaption><strong id="visor-nombre"></strong><span id="visor-precio"></span></figcaption>
+    <div class="visor-ayuda">Toca o haz clic en la foto para ampliarla más</div>
+  </figure>
+</div>
+
+<button class="carrito-fab" onclick="toggleCarrito()" id="fab" aria-label="Abrir carrito">🛒<span class="carrito-badge" id="badge">0</span></button>
+
+<div class="carrito-panel" id="panel-carrito">
+  <div class="panel-header"><h3>Tu pedido de repuestos</h3><button class="btn-cerrar" onclick="cerrarCarrito()" aria-label="Cerrar carrito">✕</button></div>
+  <ul id="lista-carrito"></ul>
+  <div class="panel-footer">
+    <div class="total-row"><span class="total-lbl">Total</span><span class="total-monto" id="total">$0</span></div>
+    <div class="panel-btns"><button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar</button><button class="btn-pagar" onclick="pagar()">Consultar pedido por WhatsApp</button></div>
+  </div>
+</div>
+
+<header class="hero hero-dividido">
+  <div class="hero-bg efecto-brillo"></div>
+  <div class="hero-content">
+    <div>
+      <img src="img/a-logo-for-american-truck-parts-that-combines-the-wbjecmzet8wzxav5u61s2g-y5yftjmhqeyyl2ip59yyqw-h88nh4.jpg" alt="Logo American Truck Parts" class="hero-logo">
+      <div class="hero-badge">Repuestos para transporte</div>
+      <h1>American<span>Truck Parts</span></h1>
+      <p class="hero-sub">Repuestos para los transportadores de Colombia. Explora nuestra selección para motor ISX.</p>
+      <a href="#catalogo" class="btn-hero">Explorar repuestos
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="hero-stats"><div class="hero-stat"><div class="num">6</div><div class="lbl">Repuestos en catálogo</div></div><div class="hero-stat"><div class="num">Colombia</div><div class="lbl">Cobertura nacional</div></div><div class="hero-stat"><div class="num">Online</div><div class="lbl">Atención en línea</div></div></div>
+    </div>
+    <img src="img/procucto-1-y2o5yo.png" alt="" class="hero-img"></div>
+  <div class="hero-scroll"><div></div></div>
+</header>
+
+<section class="banner-sec">
+  <div class="banner-glow"></div>
+  <div class="banner-content">
+    <div class="sec-label">Motor ISX</div>
+    <h2>Encuentra tu <em>próximo repuesto</em></h2>
+    <p>Culata, cigüeñal, overhaul, empaquetadura superior, turbo y bomba de combustible para motor ISX. Precios por confirmar: los valores en $0 son provisionales y no indican productos gratuitos. Tiempo de entrega por confirmar según disponibilidad.</p>
+    <div class="banner-chips"><span class="chip">Envíos a todo Colombia</span><span class="chip">Domicilios</span><span class="chip">Recogida personal</span><span class="chip">Precios por confirmar</span></div>
+  </div>
+</section>
+
+<div class="filtros-wrap" id="filtros-bar">
+  <div class="busqueda-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+    <input type="text" id="buscador" placeholder="Buscar producto..." oninput="filtrarBusqueda()">
+  </div>
+</div>
+<section class="catalogo-wrap" id="catalogo">
+  <div class="catalogo-header">
+    <div><div class="sec-label">Repuestos para tu vehículo</div><div class="sec-title">Catálogo Motor ISX</div></div>
+    <div class="catalogo-count" id="cont-count"></div>
+  </div>
+  <div id="productos"></div>
+</section>
+
+<section class="beneficios-sec" id="beneficios">
+  <div class="sec-centro"><div class="sec-label">Opciones de entrega</div><div class="sec-title">Elige cómo recibir tus repuestos</div></div>
+  <div class="beneficios-grid">
+    <div class="bcard"><div class="bcard-icono">🚚</div><h3>Envíos nacionales</h3><p>Enviamos repuestos a todo Colombia. Plazos y costos por confirmar.</p></div><div class="bcard"><div class="bcard-icono">📦</div><h3>Domicilios</h3><p>El negocio ofrece entrega a domicilio. Consulta las condiciones para tu ubicación.</p></div><div class="bcard"><div class="bcard-icono">📍</div><h3>Recogida personal</h3><p>Puedes recoger tu pedido personalmente. Punto y horario de recogida: [POR COMPLETAR].</p></div>
+  </div>
+</section>
+
+<section class="recs-sec">
+  <div class="sec-label">Explora el catálogo</div>
+  <div class="sec-title">Repuestos para conocer</div>
+  <div class="recs-grid" id="recomendados"></div>
+</section>
+
+<section class="top-sec">
+  <div class="sec-label">Favoritos de la comunidad</div>
+  <div class="sec-title">Los repuestos más votados</div>
+  <div class="top-grid" id="top"></div>
+</section>
+
+<section class="duelo-sec">
+  <div class="sec-label">Tu opinión cuenta</div>
+  <div class="sec-title">¿Qué repuesto te interesa más?</div>
+  <div class="duelo-arena" id="duelo"></div>
+  <p class="duelo-info">Selecciona el repuesto que te interesa para darle un voto en el ranking.</p>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-marca"><h3>American Truck Parts</h3><p>American Truck Parts · Repuestos para los transportadores de Colombia. Tienda online con envíos nacionales.</p></div>
+    <div class="footer-col"><h4>Contacto</h4><ul><li><a href="https://instagram.com/[POR COMPLETAR]" target="_blank" rel="noopener">Instagram: @[POR COMPLETAR]</a></li><li>Facebook: [POR COMPLETAR]</li><li>📍 Online</li></ul></div>
+    <div class="footer-col"><h4>Pagos</h4><ul></ul></div>
+    <div class="footer-col"><h4>Categorías</h4><ul><li>Motor ISX</li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 American Truck Parts — Todos los derechos reservados</span>
+    <span>Información de contacto y precios: [POR COMPLETAR]</span>
+  </div>
+  <div class="footer-credito">
+    Creada con <strong>Harvys</strong> · Prof. Harvey Sanabria ·
+    <a href="https://wa.me/573103323843?text=Hola%20Profesor%20Harvey%2C%20vi%20una%20tienda%20creada%20con%20Harvys%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener">WhatsApp 310 332 3843</a>
+  </div>
+</footer>
+
+<!-- Copia del proyecto para volver a abrirlo en Harvys (botón "Abrir"). No la borres. -->
+<script type="application/json" id="harvys-proyecto">{"negocio":{"nombre":"American Truck Parts","descripcion":"Repuestos para los transportadores de Colombia.","eslogan":"[POR COMPLETAR]","ciudad":"Online","cobertura":"Todo Colombia","whatsapp":"","instagram":"[POR COMPLETAR]","facebook":"[POR COMPLETAR]","tiktok":"","horarios":[],"logo":"foto:h88nh4"},"tema":{"nombreEstilo":"Potencia · Grafito y rojo","modo":"oscuro","colores":{"primario":"#EF4444","textoSobrePrimario":"#111111","fondo":"#121212","fondoAlterno":"#1C1C1F","tarjeta":"#252528","texto":"#FAFAFA","textoSuave":"#BFC0C5","acento":"#F87171"},"fuentes":{"titulos":"Bebas Neue","cuerpo":"Montserrat"},"titulosMayusculas":true,"radio":12,"animaciones":"media","fondoEfecto":"brillo","hero":"dividido","tarjetas":"elevadas"},"textos":{"heroEtiqueta":"Repuestos para transporte","heroTitulo":"American","heroTituloResaltado":"Truck Parts","heroSubtitulo":"Repuestos para los transportadores de Colombia. Explora nuestra selección para motor ISX.","heroBoton":"Explorar repuestos","heroImagen":"","estadisticas":[{"valor":"{productos}","etiqueta":"Repuestos en catálogo"},{"valor":"Colombia","etiqueta":"Cobertura nacional"},{"valor":"Online","etiqueta":"Atención en línea"}],"bannerEtiqueta":"Motor ISX","bannerTitulo":"Encuentra tu","bannerTituloResaltado":"próximo repuesto","bannerTexto":"Culata, cigüeñal, overhaul, empaquetadura superior, turbo y bomba de combustible para motor ISX. Precios por confirmar: los valores en $0 son provisionales y no indican productos gratuitos. Tiempo de entrega por confirmar según disponibilidad.","chips":["Envíos a todo Colombia","Domicilios","Recogida personal","Precios por confirmar"],"catalogoEtiqueta":"Repuestos para tu vehículo","catalogoTitulo":"Catálogo Motor ISX","botonAgregar":"+ Agregar al pedido","beneficiosEtiqueta":"Opciones de entrega","beneficiosTitulo":"Elige cómo recibir tus repuestos","recomendadosEtiqueta":"Explora el catálogo","recomendadosTitulo":"Repuestos para conocer","topEtiqueta":"Favoritos de la comunidad","topTitulo":"Los repuestos más votados","dueloEtiqueta":"Tu opinión cuenta","dueloTitulo":"¿Qué repuesto te interesa más?","dueloInfo":"Selecciona el repuesto que te interesa para darle un voto en el ranking.","testimoniosEtiqueta":"Experiencias de transportadores","testimoniosTitulo":"Opiniones de nuestros clientes","horariosEtiqueta":"Atención en línea","horariosTitulo":"Horarios de atención","footerTexto":"American Truck Parts · Repuestos para los transportadores de Colombia. Tienda online con envíos nacionales.","footerFrase":"Información de contacto y precios: [POR COMPLETAR]","carritoTitulo":"Tu pedido de repuestos","botonPagar":"Consultar pedido por WhatsApp"},"productos":[{"id":"p1","nombre":"Culata ISX","precio":0,"categoria":"Motor ISX","imagen":"foto:y2o5yo","descripcion":"Culata para motor ISX. Precio: [POR COMPLETAR]; el valor $0 es provisional. Referencia y compatibilidad específica: [POR COMPLETAR].","opciones":null,"destacado":false},{"id":"p2","nombre":"Cigüeñal","precio":0,"categoria":"Motor ISX","imagen":"foto:0zxjwj","descripcion":"Cigüeñal de la categoría Motor ISX. Precio: [POR COMPLETAR]; el valor $0 es provisional. Referencia y compatibilidad específica: [POR COMPLETAR].","opciones":null,"destacado":false},{"id":"p3","nombre":"Overhaul ISX","precio":0,"categoria":"Motor ISX","imagen":"foto:hrdgwf","descripcion":"Overhaul ISX. Precio: [POR COMPLETAR]; el valor $0 es provisional. Componentes incluidos y referencia: [POR COMPLETAR].","opciones":null,"destacado":false},{"id":"p4","nombre":"Empaquetadura superior ISX","precio":0,"categoria":"Motor ISX","imagen":"foto:x06011","descripcion":"Empaquetadura superior para motor ISX. Precio: [POR COMPLETAR]; el valor $0 es provisional. Contenido y referencia: [POR COMPLETAR].","opciones":null,"destacado":false},{"id":"p5","nombre":"Turbo Holset ISX","precio":0,"categoria":"Motor ISX","imagen":"foto:v01eb3","descripcion":"Turbo Holset ISX. Precio: [POR COMPLETAR]; el valor $0 es provisional. Referencia y compatibilidad específica: [POR COMPLETAR].","opciones":null,"destacado":false},{"id":"p6","nombre":"Bomba de combustible o transferencia ISX","precio":0,"categoria":"Motor ISX","imagen":"foto:eebr06","descripcion":"Bomba de combustible o transferencia ISX. Precio: [POR COMPLETAR]; el valor $0 es provisional. Tipo exacto y referencia: [POR COMPLETAR].","opciones":null,"destacado":false}],"beneficios":[{"icono":"🚚","titulo":"Envíos nacionales","texto":"Enviamos repuestos a todo Colombia. Plazos y costos por confirmar."},{"icono":"📦","titulo":"Domicilios","texto":"El negocio ofrece entrega a domicilio. Consulta las condiciones para tu ubicación."},{"icono":"📍","titulo":"Recogida personal","texto":"Puedes recoger tu pedido personalmente. Punto y horario de recogida: [POR COMPLETAR]."}],"testimonios":[],"pagos":{"metodos":[],"numeroTransferencia":"[POR COMPLETAR]","titular":"[POR COMPLETAR]","contraentregaDetalle":"[POR COMPLETAR]: no se ha confirmado si ofrece contraentrega."},"backend":{"url":"https://script.google.com/macros/s/AKfycbz9Db8aaBskHnJ9dwZqtTCNlf-EkPp5gRlt7sWUXejGZxh6jNjySR4Lgt70MwG0BoFT/exec"},"secciones":["banner","catalogo","beneficios","recomendados","top","duelo"],"personalizado":{"css":"","secciones":[]}}</script>
+<script src="script.js"></script>
+</body>
+</html>
